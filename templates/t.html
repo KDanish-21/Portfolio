@@ -29,7 +29,7 @@
         top: 20px;
         right: 30px;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end; /* align links to the right, restore original spacing */
         align-items: center;
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
@@ -678,8 +678,8 @@
 
       /* Active (center) card - MUCH LARGER */
       .cert-card.active {
-        flex: 0 0 320px;
-        height: 300px;
+        flex: 0 0 400px;
+        height: 380px;
         transform: scale(1);
         opacity: 1;
         background: rgba(0, 188, 212, 0.15);
@@ -687,12 +687,12 @@
         box-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
         backdrop-filter: blur(25px);
         z-index: 10;
-        padding: 25px;
+        padding: 35px;
       }
 
       .cert-card.active h2 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
+        font-size: 1.4rem;
+        margin-bottom: 12px;
       }
 
       .cert-card.active p {
@@ -892,247 +892,58 @@
         right: 15%;
       }
 
-      /* Certificate Modal for detailed view */
-      .cert-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-        background: rgba(0, 0, 0, 0.8);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-        animation: fadeIn 0.3s ease-in-out;
-      }
+      /* --- Seamless Section Transition Effects --- */
 
-      .cert-modal-content {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        border: 2px solid rgba(0, 188, 212, 0.4);
-        border-radius: 25px;
-        color: #fff;
-        width: 90%;
-        max-width: 600px;
-        max-height: 80vh;
-        padding: 30px;
-        text-align: left;
-        box-shadow: 0 0 40px rgba(0, 188, 212, 0.3);
-        animation: slideUp 0.5s ease-in-out;
-        overflow-y: auto;
-      }
-
-      .cert-modal-content h2 {
-        color: #00e5ff;
-        margin-bottom: 15px;
-        font-size: 1.5rem;
-        text-align: center;
-      }
-
-      .cert-modal-content .cert-issuer {
-        color: #00bcd4;
-        font-weight: 600;
-        margin-bottom: 20px;
-        text-align: center;
-        font-size: 1.1rem;
-      }
-
-      .cert-modal-content .cert-description {
-        line-height: 1.6;
-        margin-bottom: 25px;
-        font-size: 1rem;
-        opacity: 0.9;
-      }
-
-      .cert-modal-content .cert-skills {
-        background: rgba(0, 188, 212, 0.1);
-        padding: 15px;
-        border-radius: 15px;
-        margin-bottom: 25px;
-        border: 1px solid rgba(0, 188, 212, 0.2);
-      }
-
-      .cert-modal-content .cert-skills h3 {
-        color: #00bcd4;
-        margin-bottom: 10px;
-        font-size: 1.1rem;
-      }
-
-      .cert-modal-content .cert-skills ul {
-        list-style: none;
-        padding: 0;
-      }
-
-      .cert-modal-content .cert-skills li {
-        padding: 5px 0;
-        border-bottom: 1px solid rgba(0, 188, 212, 0.1);
-      }
-
-      .cert-modal-content .cert-skills li:last-child {
-        border-bottom: none;
-      }
-
-      .cert-modal-actions {
-        display: flex;
-        gap: 15px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      .cert-modal-content a {
-        display: inline-block;
-        text-decoration: none;
-        color: #00bcd4;
-        border: 2px solid #00bcd4;
-        padding: 12px 25px;
-        border-radius: 25px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        background: rgba(0, 188, 212, 0.1);
-        box-shadow: 0 0 15px rgba(0, 188, 212, 0.2);
-      }
-
-      .cert-modal-content a:hover {
-        background: #00bcd4;
-        color: #0f2027;
-        transform: scale(1.05);
-        box-shadow: 0 0 25px rgba(0, 188, 212, 0.5);
-      }
-
-      .cert-modal-content button {
-        background: rgba(255, 255, 255, 0.1);
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        color: #fff;
-        border-radius: 25px;
-        padding: 12px 25px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-weight: 500;
-      }
-
-      .cert-modal-content button:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
-      }
-
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      .contact {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 0 20px;
-        background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+      /* Soft gradient fade between sections */
+      section {
         position: relative;
-        overflow: hidden;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        transition: background 0.8s ease, opacity 0.8s ease;
       }
 
-      .contact h1 {
-        font-size: 3rem;
-        margin-bottom: 30px;
-        text-shadow: 0 0 15px rgba(0, 188, 212, 0.4);
-        animation: fadeIn 1s ease-in-out;
-      }
-
-      .contact-container {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(0, 188, 212, 0.3);
-        border-radius: 25px;
-        padding: 40px 50px;
-        max-width: 700px;
-        backdrop-filter: blur(15px);
-        box-shadow: 0 0 40px rgba(0, 188, 212, 0.1);
-        animation: slideUp 1.2s ease-in-out;
-      }
-
-      .contact-container p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 40px;
-      }
-
-      .contact-links {
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        flex-wrap: wrap;
-      }
-
-      .contact-btn {
-        display: inline-block;
-        padding: 12px 25px;
-        border-radius: 30px;
-        border: 1px solid #00bcd4;
-        color: #00bcd4;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        background: rgba(0, 188, 212, 0.1);
-        box-shadow: 0 0 15px rgba(0, 188, 212, 0.2);
-        backdrop-filter: blur(5px);
-      }
-
-      .contact-btn:hover {
-        background: #00bcd4;
-        color: #0f2027;
-        transform: scale(1.08);
-        box-shadow: 0 0 25px rgba(0, 188, 212, 0.6);
-      }
-
-      /* Footer */
-      footer {
-        margin-top: 60px;
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.6);
-        letter-spacing: 0.5px;
-      }
-
-      footer p {
-        animation: fadeIn 2s ease-in-out;
-      }
-
-      /* Add subtle glowing circles */
-      .contact::before,
-      .contact::after {
+      /* Create overlapping fade edges */
+      section::after {
         content: "";
         position: absolute;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(0, 188, 212, 0.2) 0%,
-          transparent 70%
+        bottom: -50px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(15, 32, 39, 0.7) 100%
         );
-        filter: blur(80px);
-        z-index: 0;
+        pointer-events: none;
+        z-index: 5;
       }
-
-      .contact::before {
-        width: 300px;
-        height: 300px;
-        top: 10%;
-        left: 10%;
-      }
-
-      .contact::after {
-        width: 250px;
-        height: 250px;
-        bottom: 15%;
-        right: 15%;
-      }
-
-      /* --- Seamless Section Transition Effects --- */
 
       /* Smooth section fade on scroll */
       html {
         scroll-behavior: smooth;
+        scroll-snap-type: y proximity;
+      }
+
+      /* Add subtle opacity transition when entering view */
+      @keyframes sectionFade {
+        0% {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      section {
+        animation: sectionFade 1s ease both;
+      }
+
+      /* Add slight shadow under each section to blend naturally */
+      section:not(:last-child) {
+        box-shadow: 0 0 80px rgba(0, 188, 212, 0.05) inset;
       }
 
       /* Smooth background flow between similar gradients */
@@ -1182,11 +993,10 @@
         /* Move navbar to centered top and make it fluid */
         nav {
           width: calc(100% - 40px);
-          position: fixed;
+          left: 50%;
+          right: auto;
+          transform: translateX(-50%);
           top: 12px;
-          right: 20px;
-          left: 20px;
-          margin: 0;
         }
 
         /* Make sections flow instead of forcing full viewport height */
@@ -1203,10 +1013,8 @@
         /* Stack home section vertically */
         .home {
           flex-direction: column;
-          padding: 80px 6% 40px 6%;
+          padding: 40px 6%;
           align-items: center;
-          height: auto;
-          min-height: calc(100vh - 100px);
         }
 
         .home .text {
@@ -1355,34 +1163,9 @@
 
       /* Small tablets and larger phones */
       @media (max-width: 768px) {
-        /* Enhanced mobile navbar */
-        nav {
-          position: fixed;
-          top: 10px;
-          right: 10px;
-          left: 10px;
-          width: calc(100% - 20px);
-          margin: 0;
-          padding: 10px 16px;
-          border-radius: 25px;
-          backdrop-filter: blur(15px);
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(0, 188, 212, 0.2);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
         /* show hamburger toggle and hide links by default */
         .nav-toggle {
           display: block;
-          font-size: 1.4rem;
-          padding: 4px;
-          transition: all 0.3s ease;
-          border-radius: 6px;
-        }
-
-        .nav-toggle:hover {
-          background: rgba(0, 188, 212, 0.1);
-          color: #00bcd4;
         }
 
         .nav-links {
@@ -1392,45 +1175,26 @@
         .nav-links.open {
           display: flex;
           position: absolute;
-          top: 58px;
+          top: 54px;
           left: 50%;
           transform: translateX(-50%);
-          background: rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(20px);
-          padding: 15px 18px;
-          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.04);
+          padding: 10px 14px;
+          border-radius: 12px;
           flex-direction: column;
-          gap: 12px;
-          width: calc(100% - 32px);
+          gap: 10px;
+          width: calc(100% - 48px);
           z-index: 150;
-          border: 1px solid rgba(0, 188, 212, 0.25);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-          animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateX(-50%) translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-          }
         }
 
         nav a {
-          padding: 8px 14px;
-          border-radius: 12px;
-          transition: all 0.3s ease;
-          text-align: center;
-          font-weight: 500;
+          padding: 6px 12px;
         }
 
-        nav a:hover {
-          background: rgba(0, 188, 212, 0.15);
-          color: #00e5ff;
-          transform: translateY(-1px);
+        nav {
+          top: 8px;
+          padding: 8px 14px;
+          border-radius: 30px;
         }
 
         .home .text h1 {
@@ -1453,198 +1217,146 @@
           font-size: 2rem;
         }
 
-        /* Mobile certifications - enhanced desktop-style carousel for mobile */
-        .certifications {
-          padding-top: 75px;
-          padding-bottom: 55px;
-          min-height: auto;
+        .cert-card {
+          flex: 0 0 48%;
         }
 
+        /* Mobile: horizontal scroll-snap carousel showing 2-3 cards with center emphasis
+           Cards scale up and brighten when touched/centered, with smooth transitions.
+        */
         .cert-slider {
-          width: 100%;
           height: auto;
-          min-height: 400px;
+          min-height: 320px;
           position: relative;
-          overflow: visible;
+          overflow: hidden;
           padding: 20px 0;
         }
 
         .cert-track {
           display: flex;
+          gap: 18px;
+          overflow-x: auto;
+          scroll-snap-type: x proximity;
+          -webkit-overflow-scrolling: touch;
+          padding: 10px 24px;
           align-items: center;
-          justify-content: center;
-          transition: all 0.6s ease-in-out;
-          gap: 12px;
-          padding: 0 4%;
+          width: 100%;
+          box-sizing: border-box;
+          justify-content: flex-start;
         }
 
-        .cert-track::-webkit-scrollbar { 
-          display: none; 
-        }
+        .cert-track::-webkit-scrollbar { display: none; }
 
         .cert-card {
-          flex: 0 0 110px;
-          width: 110px;
-          height: 150px;
+          flex: 0 0 60%;
+          max-width: 60%;
           scroll-snap-align: center;
           display: flex !important;
           flex-direction: column;
-          justify-content: center;
+          justify-content: space-between;
           align-items: flex-start;
-          padding: 12px !important;
+          padding: 18px !important;
           box-sizing: border-box;
-          transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          transform: scale(0.6);
-          opacity: 0.4;
+          transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transform: scale(0.82);
+          opacity: 0.75;
           z-index: 1;
           margin: 0;
-          background: rgba(0, 188, 212, 0.06) !important;
+          height: 240px;
+          background: rgba(0, 188, 212, 0.08) !important;
           border: 1px solid rgba(0, 188, 212, 0.2) !important;
-          box-shadow: 0 4px 12px rgba(0, 188, 212, 0.08) !important;
-          filter: blur(1.2px);
-          border-radius: 12px !important;
-          cursor: pointer;
-          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0, 188, 212, 0.05) !important;
+          filter: blur(0.5px);
         }
 
-        .cert-card h2 {
-          font-size: 0.7rem !important;
-          margin-bottom: 4px !important;
-          line-height: 1.1 !important;
-          color: #00bcd4 !important;
-          font-weight: 600 !important;
+        /* Hover/Touch state — when card is near center */
+        .cert-card:hover {
+          transform: scale(0.92);
+          opacity: 0.9;
+          box-shadow: 0 6px 20px rgba(0, 188, 212, 0.15) !important;
         }
 
-        .cert-card p {
-          font-size: 0.55rem !important;
-          line-height: 1.2 !important;
-          margin-bottom: 3px !important;
-          opacity: 0.7 !important;
-        }
-
-        .cert-card a {
-          margin-top: auto !important;
-          padding: 4px 8px !important;
-          font-size: 0.5rem !important;
-          align-self: flex-start !important;
-          border-radius: 8px !important;
-        }
-
-        /* Active (center) card - prominently displayed like desktop */
         .cert-card.active {
-          flex: 0 0 240px;
-          width: 240px;
-          height: 280px;
           transform: scale(1);
           opacity: 1;
-          z-index: 10;
+          z-index: 5;
           background: rgba(0, 188, 212, 0.15) !important;
           border: 2px solid rgba(0, 188, 212, 0.6) !important;
-          box-shadow: 0 15px 50px rgba(0, 188, 212, 0.25) !important;
+          box-shadow: 0 10px 35px rgba(0, 188, 212, 0.25) !important;
           filter: blur(0);
-          padding: 20px !important;
-          backdrop-filter: blur(15px);
-          border-radius: 18px !important;
+          height: auto;
+          min-height: 240px;
         }
 
         .cert-card.active h2 {
-          font-size: 1.05rem !important;
+          font-size: 1.2rem !important;
           color: #00e5ff !important;
-          margin-bottom: 8px !important;
-          line-height: 1.3 !important;
-          font-weight: 600 !important;
         }
 
         .cert-card.active p {
-          font-size: 0.8rem !important;
+          font-size: 0.85rem !important;
           opacity: 1 !important;
-          line-height: 1.4 !important;
-          margin-bottom: 8px !important;
         }
 
-        .cert-card.active a {
-          padding: 10px 18px !important;
-          font-size: 0.8rem !important;
-          margin-top: 15px !important;
-          border-radius: 12px !important;
-        }
-
-        /* Hide extra content on non-active cards */
         .cert-card:not(.active) p:nth-of-type(2) {
           display: none;
         }
 
-        .cert-card:not(.active) p:first-of-type {
-          display: -webkit-box;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
+        /* Slightly adjusted on narrow phones */
+        @media (max-width: 480px) {
+          .cert-card { 
+            flex: 0 0 70%; 
+            max-width: 70%; 
+            height: 220px;
+          }
+          .cert-card.active {
+            height: auto;
+            min-height: 220px;
+          }
         }
 
-        /* Nav buttons - sleeker and more mobile-friendly */
+        /* nav buttons remain but are slightly transparent and reactive */
         .nav-btn { 
           display: flex; 
-          width: 45px; 
-          height: 45px; 
-          font-size: 1.3rem;
-          opacity: 0.8;
+          width: 44px; 
+          height: 44px; 
+          font-size: 1.25rem;
+          opacity: 0.7;
           transition: all 0.3s ease;
-          background: rgba(0, 188, 212, 0.15) !important;
-          border: 1px solid rgba(0, 188, 212, 0.3) !important;
-          backdrop-filter: blur(10px);
         }
-        
-        .nav-btn:hover,
         .nav-btn:active {
           opacity: 1;
-          transform: translateY(-50%) scale(1.1);
-          background: rgba(0, 188, 212, 0.25) !important;
-          box-shadow: 0 0 20px rgba(0, 188, 212, 0.4) !important;
+          transform: translateY(-50%) scale(1.2);
         }
-        
-        .nav-btn.prev { left: 2%; }
-        .nav-btn.next { right: 2%; }
+        .nav-btn.prev { left: 4%; }
+        .nav-btn.next { right: 4%; }
       }
 
       /* Phones */
       @media (max-width: 480px) {
-        /* Enhanced phone navbar */
         nav {
-          position: fixed;
-          top: 8px;
-          right: 10px;
-          left: 10px;
-          width: calc(100% - 20px);
-          margin: 0;
-          padding: 10px 14px;
-          border-radius: 22px;
-          backdrop-filter: blur(20px);
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(0, 188, 212, 0.25);
+          width: calc(100% - 24px);
+          top: 6px;
+          padding: 8px 12px;
+          border-radius: 20px;
         }
 
         /* Keep toggle visible, show expanded nav when open */
         .nav-toggle {
           display: block;
-          font-size: 1.3rem;
-          padding: 6px;
         }
 
         .nav-links.open {
-          top: 52px;
-          width: calc(100% - 28px);
-          padding: 12px 16px;
-          border-radius: 16px;
+          top: 48px;
+          width: calc(100% - 32px);
         }
 
         nav a {
           font-size: 0.95rem;
-          padding: 10px 12px;
         }
 
         .home {
-          padding: 80px 4% 30px 4%;
-          min-height: calc(100vh - 80px);
+          padding: 30px 4%;
         }
 
         .home .text h1 {
@@ -1671,151 +1383,66 @@
           width: 120px;
           height: 120px;
         }
-        
-        /* Ultra-compact design for phones */
-        .certifications {
-          padding-top: 65px;
-          padding-bottom: 35px;
+
+        .cert-card {
+          flex: 0 0 100%;
         }
 
-        .certifications h1 {
-          font-size: 1.7rem;
-          margin-bottom: 18px;
-        }
-
+        /* Make certifications stack vertically on small screens for readability */
         .cert-slider {
-          min-height: 340px;
-          padding: 10px 0;
+          height: auto !important;
+          padding: 20px 0 !important;
         }
 
         .cert-track {
-          padding: 10px 2%;
-          gap: 8px;
+          display: block !important;
+          margin: 0 auto;
+          width: calc(100% - 32px);
         }
 
         .cert-card {
-          flex: 0 0 90px;
-          width: 90px;
-          min-height: 130px;
-          padding: 10px !important;
-          border-radius: 10px !important;
-          transform: scale(0.55);
-          opacity: 0.35;
+          display: block !important;
+          width: 100% !important;
+          margin: 10px 0 !important;
+          transform: none !important;
+          opacity: 1 !important;
+          filter: none !important;
         }
 
-        .cert-card h2 {
-          font-size: 0.65rem !important;
-          margin-bottom: 3px !important;
-          line-height: 1.05 !important;
-          font-weight: 600 !important;
-        }
-
-        .cert-card p {
-          font-size: 0.5rem !important;
-          line-height: 1.15 !important;
-          margin-bottom: 2px !important;
-        }
-
-        .cert-card a {
-          padding: 3px 6px !important;
-          font-size: 0.45rem !important;
-          margin-top: 5px !important;
-          border-radius: 6px !important;
+        .cert-card:not(.active) {
+          opacity: 0.95;
+          transform: scale(0.98);
+          filter: none;
         }
 
         .cert-card.active {
-          flex: 0 0 220px;
-          width: 220px;
-          min-height: 260px;
-          transform: scale(1);
-          opacity: 1;
-          padding: 18px !important;
-          border-radius: 16px !important;
+          flex: 0 0 100% !important;
+          height: auto !important;
+          transform: none !important;
+          padding: 20px !important;
         }
 
-        .cert-card.active h2 {
-          font-size: 1rem !important;
-          margin-bottom: 8px !important;
-          line-height: 1.25 !important;
-        }
-
-        .cert-card.active p {
-          font-size: 0.72rem !important;
-          line-height: 1.35 !important;
-          margin-bottom: 6px !important;
-          opacity: 0.95 !important;
-        }
-
-        .cert-card.active a {
-          padding: 8px 14px !important;
-          font-size: 0.7rem !important;
-          margin-top: 12px !important;
-          border-radius: 10px !important;
-        }
-
-        /* Truncate content more aggressively on phones */
-        .cert-card:not(.active) p:nth-of-type(2) {
-          display: none;
-        }
-
-        .cert-card:not(.active) p:first-of-type {
-          -webkit-line-clamp: 1;
-        }
-
-        /* Hide nav buttons on very small screens to save space */
+        /* Hide the large nav buttons for the carousel on phones */
         .nav-btn {
           display: none !important;
         }
 
-        /* Optimize modal for phones */
-        .cert-modal-content {
-          width: 95%;
-          max-width: none;
-          padding: 18px;
-          max-height: 85vh;
+        .nav-btn {
+          display: none; /* hide large nav controls on very small screens to reduce clutter */
+        }
+        
+        /* Improve spacing so navbar does not overlap headings and cards sit comfortably */
+        .certifications {
+          padding-top: 110px;
+          padding-bottom: 40px;
         }
 
-        .cert-modal-content h2 {
-          font-size: 1.15rem;
-          margin-bottom: 8px;
-        }
-
-        .cert-modal-content .cert-issuer {
-          font-size: 0.9rem;
-          margin-bottom: 12px;
-        }
-
-        .cert-modal-content .cert-description {
-          font-size: 0.8rem;
-          margin-bottom: 16px;
-        }
-
-        .cert-modal-content .cert-skills {
-          padding: 10px;
-          margin-bottom: 16px;
-        }
-
-        .cert-modal-content .cert-skills h3 {
-          font-size: 0.9rem;
-          margin-bottom: 6px;
-        }
-
-        .cert-modal-content .cert-skills li {
-          font-size: 0.75rem;
-          padding: 2px 0;
-        }
-
-        .cert-modal-actions {
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .cert-modal-content a,
-        .cert-modal-content button {
-          padding: 9px 18px;
-          font-size: 0.8rem;
-          width: 100%;
-          text-align: center;
+        .cert-card {
+          min-height: 140px !important;
+          border-radius: 16px !important;
+          padding: 22px !important;
+          box-shadow: 0 6px 30px rgba(0,188,212,0.06) !important;
+          background: rgba(0,0,0,0.06) !important;
         }
 
         footer p {
@@ -2170,7 +1797,7 @@
     <div class="cert-track">
 
       <!-- 1️⃣ CCNA M1, M2, M3 -->
-      <div class="cert-card active" onclick="openCertModal('ccna')">
+      <div class="cert-card active">
         <h2>CCNA: M1 M2 M3</h2>
         <p><strong>Issued by:</strong> Cisco</p>
         <p>
@@ -2182,12 +1809,11 @@
         <a
           href="https://www.credly.com/badges/e1256118-1b4e-4dd4-83e7-ba856be8082c/linked_in_profile"
           target="_blank"
-          onclick="event.stopPropagation()"
         >🔗 Verify</a>
       </div>
 
       <!-- 2️⃣ PowerBI Certification -->
-      <div class="cert-card" onclick="openCertModal('powerbi')">
+      <div class="cert-card">
         <h2>Power BI Certification</h2>
         <p><strong>Issued by:</strong> OfficeMaster</p>
         <p>
@@ -2198,12 +1824,11 @@
         <a
           href="https://certx.in/certificate/36a28147-6eed-47a5-8342-e5f926ebba61376309"
           target="_blank"
-          onclick="event.stopPropagation()"
         >🔗 Verify</a>
       </div>
 
       <!-- 3️⃣ Python Essentials -->
-      <div class="cert-card" onclick="openCertModal('python')">
+      <div class="cert-card">
         <h2>Python Essentials 1 & 2</h2>
         <p><strong>Issued by:</strong> Cisco Networking Academy</p>
         <p>
@@ -2213,12 +1838,11 @@
         <a
           href="https://www.credly.com/earner/earned/share/5134f39e-9996-482a-a19e-362805a08b5e"
           target="_blank"
-          onclick="event.stopPropagation()"
         >🔗 Verify</a>
       </div>
 
       <!-- 4️⃣ Microsoft Copilot -->
-      <div class="cert-card" onclick="openCertModal('copilot')">
+      <div class="cert-card">
         <h2>Microsoft Copilot for Productivity</h2>
         <p><strong>Issued by:</strong> Microsoft & LinkedIn Learning</p>
         <p>
@@ -2228,12 +1852,11 @@
         <a
           href="file:///C:/Users/ASUS/OneDrive/Documents/Certifications/Microsoft%20Copilot%20for%20Productivity.pdf"
           target="_blank"
-          onclick="event.stopPropagation()"
         >🔗 View Certificate</a>
       </div>
 
       <!-- 5️⃣ Cybersecurity -->
-      <div class="cert-card" onclick="openCertModal('cybersecurity')">
+      <div class="cert-card">
         <h2>Cybersecurity Essentials</h2>
         <p><strong>Issued by:</strong> Cisco Networking Academy</p>
         <p>
@@ -2243,7 +1866,6 @@
         <a
           href="https://www.credly.com/earner/earned/share/84b8e669-c624-4983-927f-fb80eb119041"
           target="_blank"
-          onclick="event.stopPropagation()"
         >🔗 Verify</a>
       </div>
     </div>
@@ -2251,16 +1873,8 @@
     <button class="nav-btn next" onclick="nextSlide()">&#10095;</button>
   </div>
 
+  <!-- ⭐ ADD THIS HERE ⭐ -->
   <div class="cert-dots"></div>
-
-  <!-- Certificate Modal -->
-  <div id="cert-modal" class="cert-modal">
-    <div class="cert-modal-content">
-      <div id="cert-modal-body">
-        <!-- Content will be dynamically inserted here -->
-      </div>
-    </div>
-  </div>
 
 </section>
 
@@ -2368,132 +1982,6 @@
       document.addEventListener("DOMContentLoaded", () => {
         const track = document.querySelector(".cert-track");
 
-        // Certificate data for detailed modals
-        const certData = {
-          ccna: {
-            title: "CCNA: Introduction to Networks (M1, M2, M3)",
-            issuer: "Cisco Networking Academy",
-            description: "Comprehensive networking certification covering fundamental concepts of modern networking. This certification validates understanding of network infrastructure, IP addressing schemes, and network security basics.",
-            fullDescription: "Successfully completed the Introduction to Networks course, demonstrating proficiency in network fundamentals, Ethernet technologies, and switch-router configuration. The certification covers essential networking concepts including OSI model, TCP/IP protocol suite, subnetting, VLAN configuration, and basic network troubleshooting.",
-            skills: [
-              "Network Infrastructure Design",
-              "IP Addressing and Subnetting", 
-              "Ethernet Fundamentals",
-              "Switch and Router Configuration",
-              "VLAN Implementation",
-              "Network Troubleshooting",
-              "OSI Model Understanding",
-              "TCP/IP Protocol Suite"
-            ],
-            verifyUrl: "https://www.credly.com/badges/e1256118-1b4e-4dd4-83e7-ba856be8082c/linked_in_profile"
-          },
-          powerbi: {
-            title: "Power BI Certification",
-            issuer: "OfficeMaster",
-            description: "Advanced certification in Microsoft Power BI for business intelligence and data visualization. Demonstrates expertise in creating interactive dashboards and analytical reports.",
-            fullDescription: "Awarded for successful completion of comprehensive Power BI workshop. This certification validates proficiency in building AI-powered interactive dashboards, advanced data visualization techniques, and analytical storytelling using Power BI. Covers data modeling, DAX functions, and business intelligence best practices.",
-            skills: [
-              "Interactive Dashboard Creation",
-              "Data Visualization Design",
-              "DAX Functions and Formulas",
-              "Data Modeling Techniques",
-              "Business Intelligence Analytics",
-              "Report Automation",
-              "AI-Powered Insights",
-              "Analytical Storytelling"
-            ],
-            verifyUrl: "https://certx.in/certificate/36a28147-6eed-47a5-8342-e5f926ebba61376309"
-          },
-          python: {
-            title: "Python Essentials 1 & 2",
-            issuer: "Cisco Networking Academy",
-            description: "Comprehensive Python programming certification covering fundamental to advanced concepts. Validates strong coding foundations and programming best practices.",
-            fullDescription: "Completed comprehensive Python programming courses covering fundamental concepts, data structures, control flow, object-oriented programming, and industry best practices. This certification demonstrates strong coding foundations and ability to develop efficient Python applications.",
-            skills: [
-              "Python Programming Fundamentals",
-              "Data Structures and Algorithms",
-              "Object-Oriented Programming",
-              "Control Flow and Logic",
-              "File Handling and I/O",
-              "Error Handling and Debugging",
-              "Code Optimization",
-              "Programming Best Practices"
-            ],
-            verifyUrl: "https://www.credly.com/earner/earned/share/5134f39e-9996-482a-a19e-362805a08b5e"
-          },
-          copilot: {
-            title: "Microsoft Copilot for Productivity",
-            issuer: "Microsoft & LinkedIn Learning",
-            description: "Advanced certification in AI-powered productivity tools and workflow automation. Demonstrates expertise in leveraging AI for enhanced productivity.",
-            fullDescription: "Comprehensive training in Microsoft Copilot and AI-integrated productivity tools. This certification validates ability to leverage artificial intelligence for workflow automation, document intelligence, and enhanced productivity across Microsoft 365 ecosystem.",
-            skills: [
-              "AI-Powered Workflow Automation",
-              "Document Intelligence",
-              "Microsoft 365 Integration",
-              "Productivity Optimization",
-              "AI Tool Implementation",
-              "Automated Content Generation",
-              "Smart Data Analysis",
-              "Collaborative AI Solutions"
-            ],
-            verifyUrl: "file:///C:/Users/ASUS/OneDrive/Documents/Certifications/Microsoft%20Copilot%20for%20Productivity.pdf"
-          },
-          cybersecurity: {
-            title: "Cybersecurity Essentials",
-            issuer: "Cisco Networking Academy",
-            description: "Advanced cybersecurity certification covering threat mitigation, system security, and network protection. Validates comprehensive security knowledge.",
-            fullDescription: "Completed advanced cybersecurity coursework covering comprehensive threat mitigation strategies, system security implementation, and essential network protection protocols. This certification demonstrates expertise in cybersecurity fundamentals and practical security implementation.",
-            skills: [
-              "Threat Assessment and Mitigation",
-              "Network Security Implementation",
-              "System Security Hardening",
-              "Incident Response Planning",
-              "Security Policy Development",
-              "Vulnerability Assessment",
-              "Risk Management",
-              "Security Monitoring and Analysis"
-            ],
-            verifyUrl: "https://www.credly.com/earner/earned/share/84b8e669-c624-4983-927f-fb80eb119041"
-          }
-        };
-
-        // Function to open certificate modal
-        window.openCertModal = function(certId) {
-          const cert = certData[certId];
-          if (!cert) return;
-
-          const modalBody = document.getElementById('cert-modal-body');
-          modalBody.innerHTML = `
-            <h2>${cert.title}</h2>
-            <div class="cert-issuer">Issued by: ${cert.issuer}</div>
-            <div class="cert-description">${cert.fullDescription}</div>
-            <div class="cert-skills">
-              <h3>Skills & Competencies:</h3>
-              <ul>
-                ${cert.skills.map(skill => `<li>• ${skill}</li>`).join('')}
-              </ul>
-            </div>
-            <div class="cert-modal-actions">
-              <a href="${cert.verifyUrl}" target="_blank">🔗 Verify Certificate</a>
-              <button onclick="closeCertModal()">Close</button>
-            </div>
-          `;
-          
-          document.getElementById('cert-modal').style.display = 'flex';
-        };
-
-        // Function to close certificate modal
-        window.closeCertModal = function() {
-          document.getElementById('cert-modal').style.display = 'none';
-        };
-
-        // Close modal when clicking outside
-        document.getElementById('cert-modal').addEventListener('click', function(e) {
-          if (e.target === this) {
-            closeCertModal();
-          }
-        });
-
         // Desktop carousel behavior (rotate DOM elements)
         function nextSlideDesktop() {
           const firstCard = track.firstElementChild;
@@ -2587,15 +2075,21 @@
           mobileIndex = closest;
           cards.forEach((c, i) => {
             c.classList.toggle("active", i === mobileIndex);
+            // Add subtle visual feedback for nearby cards
+            if (Math.abs(i - mobileIndex) <= 1) {
+              c.style.pointerEvents = "auto";
+            } else {
+              c.style.pointerEvents = "none";
+            }
           });
         }
 
         function onTrackScroll() {
-          // debounce active calculation for better performance
+          // debounce active calculation with faster response time for better UX
           if (scrollTimer) clearTimeout(scrollTimer);
           scrollTimer = setTimeout(() => {
             updateActiveOnScroll();
-          }, 100);
+          }, 50);
         }
 
         function nextSlideMobile() {
@@ -2637,34 +2131,21 @@
           attachCardClickListeners();
         }
 
-        // touch/swipe support with improved sensitivity
-        let touchStartX = null;
+        // touch/swipe support
         let touchStartY = null;
         function onTouchStart(e) {
-          const touch = e.touches ? e.touches[0] : e;
-          touchStartX = touch.clientX;
-          touchStartY = touch.clientY;
+          touchStartY = e.touches ? e.touches[0].clientY : e.clientY;
         }
         function onTouchEnd(e) {
-          if (touchStartX == null || touchStartY == null) return;
-          const touch = e.changedTouches ? e.changedTouches[0] : e;
-          const touchEndX = touch.clientX;
-          const touchEndY = touch.clientY;
-          
-          const deltaX = touchStartX - touchEndX;
-          const deltaY = touchStartY - touchEndY;
-          const threshold = 50; // px
-          
-          // Only trigger swipe if horizontal movement is greater than vertical
-          if (Math.abs(deltaX) > Math.abs(deltaY)) {
-            if (deltaX > threshold) {
-              nextSlideMobile();
-            } else if (deltaX < -threshold) {
-              prevSlideMobile();
-            }
+          if (touchStartY == null) return;
+          const touchEndY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+          const delta = touchStartY - touchEndY;
+          const threshold = 30; // px
+          if (delta > threshold) {
+            nextSlideMobile();
+          } else if (delta < -threshold) {
+            prevSlideMobile();
           }
-          
-          touchStartX = null;
           touchStartY = null;
         }
 
