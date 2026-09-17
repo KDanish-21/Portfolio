@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+/* The legacy site lives in public/ — keep it out of class detection. */
+@source not "../public";
+
+@theme {
+  /* ---- Palette ------------------------------------------------------- */
+  --color-paper: #f0eee8;
+  --color-paper-2: #e8e5de;
+  --color-paper-3: #dedad1;
+  --color-ink: #171a1a;
+  --color-ink-2: #4c4f4c;
+  --color-rule: #a6a39b;
+  --color-grid: #d5d1c8;
+  --color-copper: #b77c5f;
+  --color-dark: #202423;
+  --color-olive: #767a69;
+
+  /* Hairlines — the dominant structural element of the design */
+  --color-hair: rgba(23, 26, 26, 0.2);
+  --color-hair-soft: rgba(23, 26, 26, 0.1);
+  --color-hair-dark: rgba(240, 238, 232, 0.16);
+
+  /* ---- Type scale ---------------------------------------------------- */
+  --text-mega: clamp(3.25rem, 8.4vw, 8.25rem);
+  --text-display: clamp(1.75rem, 2.55vw, 2.5rem);
+  --text-section: clamp(1.35rem, 1.9vw, 1.85rem);
+  --text-stat: clamp(1.4rem, 2vw, 1.95rem);
+  --text-micro: 0.625rem;
+  --text-mono-sm: 0.6875rem;
+  --text-mono: 0.75rem;
+
+  --tracking-mega: -0.045em;
+  --tracking-display: -0.03em;
+  --tracking-label: 0.18em;
+  --tracking-wide-label: 0.26em;
+
+  /* ---- Structure ------------------------------------------------------ */
+  --spacing-rail: 7.5rem;
+  --spacing-gutter: 3rem;
+
+  --ease-editorial: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Font tokens reference next/font variables, so they must be `inline`. */
+@theme inline {
+  --font-display: var(--font-archivo);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-plex-mono);
+  --font-hand: var(--font-caveat);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-copper);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Paper: a blueprint grid plus a faint tooth. Never flat.                 */
+/* ---------------------------------------------------------------------- */
+@layer base {
+  .paper-surface {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .paper-surface::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image:
+      repeating-linear-gradient(to right, var(--color-grid) 0 1px, transparent 1px 100%),
+      repeating-linear-gradient(to bottom, var(--color-grid) 0 1px, transparent 1px 100%);
+    background-size: 56px 56px;
+    opacity: 0.22;
+    pointer-events: none;
+  }
+
+  .paper-surface::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.32;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Repeated editorial components                                           */
+/* ---------------------------------------------------------------------- */
+@layer components {
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-mono-sm);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+  }
+
+  .mono-micro {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-wide-label);
+    text-transform: uppercase;
+    color: var(--color-olive);
+  }
+
+  /* Bordered technical tag — square, hairline, inverts on hover */
+  .tech-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: 0.08em;
+    border: 1px solid var(--color-hair);
+    padding: 0.3rem 0.55rem;
+    color: var(--color-ink-2);
+    background: transparent;
+    transition:
+      background-color 0.35s var(--ease-editorial),
+      color 0.35s var(--ease-editorial),
+      border-color 0.35s var(--ease-editorial);
+    white-space: nowrap;
+  }
+
+  .tech-tag:hover {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* [ VIEW ALL PROJECTS → ] */
+  .action-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-mono-sm);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s var(--ease-editorial);
+  }
+
+  .action-link:hover {
+    color: var(--color-copper);
+  }
+
+  .action-link .arrow {
+    transition: transform 0.35s var(--ease-editorial);
+  }
+
+  .action-link:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Motion. Default state is VISIBLE — the reveal only engages once JS       */
+/* confirms it can run, so the page is never blank without hydration.       */
+/* ---------------------------------------------------------------------- */
+@layer utilities {
+  html[data-js] [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  html[data-js] [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.75s var(--ease-editorial) var(--reveal-delay, 0ms),
+      transform 0.75s var(--ease-editorial) var(--reveal-delay, 0ms);
+  }
+
+  /* Display type wipes up behind a clip edge */
+  html[data-js] [data-reveal-line] > span {
+    display: block;
+    transform: translateY(105%);
+  }
+
+  html[data-js] [data-reveal-line].is-visible > span {
+    transform: none;
+    transition: transform 0.95s var(--ease-editorial) var(--reveal-delay, 0ms);
+  }
+
+  /* SVG connector line-draw */
+  html[data-js] [data-draw] {
+    stroke-dasharray: var(--draw-length, 1200);
+    stroke-dashoffset: var(--draw-length, 1200);
+  }
+
+  html[data-js] [data-draw].is-visible {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1.6s var(--ease-editorial) var(--reveal-delay, 0ms);
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-js] [data-reveal],
+  html[data-js] [data-reveal].is-visible,
+  html[data-js] [data-reveal-line] > span,
+  html[data-js] [data-reveal-line].is-visible > span {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html[data-js] [data-draw],
+  html[data-js] [data-draw].is-visible {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
