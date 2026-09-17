@@ -573,6 +573,116 @@
       }
 
       /* Certifications Section */
+      .experience {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .experience h1 {
+        font-size: 3rem;
+        margin-bottom: 40px;
+        text-shadow: 0 0 15px rgba(0, 188, 212, 0.3);
+      }
+
+      .exp-timeline {
+        width: 100%;
+        max-width: 900px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .exp-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(0, 188, 212, 0.3);
+        border-radius: 16px;
+        padding: 30px;
+        text-align: left;
+        color: white;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 25px rgba(0, 188, 212, 0.1);
+        transition: all 0.4s ease;
+      }
+
+      .exp-card:hover {
+        border-color: rgba(0, 188, 212, 0.7);
+        box-shadow: 0 0 30px rgba(0, 188, 212, 0.35);
+      }
+
+      .exp-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .exp-header h2 {
+        font-size: 1.3rem;
+        color: #00bcd4;
+        margin-bottom: 4px;
+      }
+
+      .exp-header h3 {
+        font-size: 1rem;
+        font-weight: 400;
+        opacity: 0.85;
+      }
+
+      .exp-date {
+        display: inline-block;
+        white-space: nowrap;
+        color: #00bcd4;
+        border: 1px solid #00bcd4;
+        padding: 6px 16px;
+        border-radius: 25px;
+        font-size: 0.85rem;
+        box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
+      }
+
+      .exp-bullets {
+        list-style: disc;
+        padding-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      .exp-bullets li {
+        margin-bottom: 10px;
+        line-height: 1.5;
+        opacity: 0.9;
+        font-size: 0.95rem;
+      }
+
+      .exp-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .exp-tags span {
+        background: rgba(0, 188, 212, 0.1);
+        border: 1px solid rgba(0, 188, 212, 0.3);
+        color: #00bcd4;
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+      }
+
+      .exp-tags span:hover {
+        background: #00bcd4;
+        color: #0f2027;
+        box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+      }
+
       .certifications {
         height: 100vh;
         display: flex;
@@ -1832,6 +1942,7 @@
         <a href="#home">Home</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
         <a href="#certifications">Certifications</a>
         <a href="#contact">Contact</a>
       </div>
@@ -1844,20 +1955,16 @@
     <section id="home" class="home">
   <div class="text">
     <h1>Hi, I’m <span style="color: #00bcd4">Danish Khan</span></h1>
-    <h2>Python Developer | Full-Stack Engineer | Tech Enthusiast</h2>
+    <h2>ERPNext/Frappe Developer | Full-Stack Engineer | Python Developer</h2>
     <p>
-      I’m Danish Khan — a passionate Python Developer and Computer Science Engineering student 
-      who loves turning ideas into real-world solutions. Over the past few years, 
-      I’ve built projects that combine AI, automation, and backend systems, using 
-      technologies like <strong>Django</strong>, <strong>FastAPI</strong>, 
-      <strong>Frappe</strong>, <strong>ERPNext</strong>, <strong>MLflow</strong>, 
-      <strong>Docker</strong>, and <strong>Power BI</strong>.
-      <br /><br />
-      I believe tht great software isn’t just about code — it’s about solving 
-      real problems efficiently and creatively. Whether it’s developing a 
-      full-fledged web application, integrating IoT and AI features, or 
-      optimizing data workflows, I enjoy every part of the process from 
-      design to deployment.
+      I’m Danish Khan — a Full-Stack Developer specialising in ERPNext/Frappe
+      and Python-based backends. Currently working at ADRS Techno Pvt. Ltd.,
+      where I build and customise enterprise ERP systems, REST APIs, and full-stack
+      web applications using Django, FastAPI, React, Next.js, and Power BI.
+      I believe great software isn’t just about code — it’s about solving real
+      problems efficiently and creatively. From ERPNext customisations and data
+      pipelines to mobile apps live on both app stores, I enjoy every part of the
+      journey from design to deployment.
     </p>
     <button onclick="scrollToProjects()">View Projects ↓</button>
   </div>
@@ -1869,7 +1976,7 @@
     name = <span style="color:#fff;">"Danish Khan"</span>
     role = <span style="color:#fff;">"Full Stack Developer"</span>
     skills = [<span style="color:#fff;">"Python"</span>, <span style="color:#fff;">"FastAPI"</span>, <span style="color:#fff;">"Django"</span>, <span style="color:#fff;">"Frappe"</span>]
-    tools = [<span style="color:#fff;">"Docker"</span>, <span style="color:#fff;">"Power BI"</span>, <span style="color:#fff;">"MLflow"</span>]
+    tools = [<span style="color:#fff;">"Docker"</span>, <span style="color:#fff;">"Power BI"</span>, <span style="color:#fff;">"ERPNext"</span>]
 
     <span style="color:#00bcd4;">def</span> build(self):
         <span style="color:#9ccc65;">return</span> <span class="typed">"Smart, scalable & impactful solutions"</span>
@@ -1886,30 +1993,32 @@
         <div class="skill-bubbles">
           <div class="bubble" style="top: 10%; left: 25%">C++</div>
           <div class="bubble" style="top: 30%; left: 10%">Python</div>
-          <div class="bubble" style="top: 40%; left: 80%">DSA</div>
+          <div class="bubble" style="top: 40%; left: 80%">JavaScript</div>
           <div class="bubble" style="top: 60%; left: 20%">Django</div>
           <div class="bubble" style="top: 75%; left: 35%">Frappe</div>
           <div class="bubble" style="top: 50%; left: 45%">FastAPI</div>
-          <div class="bubble" style="top: 15%; left: 50%">Flask</div>
+          <div class="bubble" style="top: 15%; left: 50%">ERPNext</div>
           <div class="bubble" style="top: 35%; left: 35%">MySQL</div>
-          <div class="bubble" style="top: 65%; left: 70%">HTML</div>
-          <div class="bubble" style="top: 80%; left: 55%">CSS</div>
+          <div class="bubble" style="top: 65%; left: 70%">Next.js</div>
+          <div class="bubble" style="top: 80%; left: 55%">React</div>
           <div class="bubble" style="top: 20%; left: 70%">Docker</div>
-          <div class="bubble" style="top: 10%; left: 80%">MLflow</div>
+          <div class="bubble" style="top: 10%; left: 80%">TypeScript</div>
           <div class="bubble" style="top: 41%; left: 64%">PowerBI</div>
+          <div class="bubble" style="top: 88%; left: 20%">PostgreSQL</div>
+          <div class="bubble" style="top: 5%; left: 55%">Git</div>
         </div>
       </div>
 
       <div class="skills-right">
         <ul>
-          <li><strong>Languages:</strong> C++, Python</li>
+          <li><strong>Languages:</strong> Python, JavaScript, TypeScript, C++</li>
           <li>
-            <strong>Web Frameworks:</strong> Django, Frappe, FastAPI, Flask
+            <strong>Backend:</strong> Django, DRF, FastAPI, Frappe/ERPNext, Flask
           </li>
-          <li><strong>Databases:</strong> MySQL</li>
-          <li><strong>Frontend:</strong> HTML, CSS</li>
-          <li><strong>Additional:</strong> PowerBI, Docker, MLflow</li>
-          <li><strong>Coursework:</strong> DSA, OOP, OS, DBMS</li>
+          <li><strong>Frontend:</strong> React, Next.js, Flutter, HTML, CSS, Tailwind CSS</li>
+          <li><strong>Databases:</strong> MySQL, PostgreSQL, MariaDB, SQLite</li>
+          <li><strong>Tools & Infra:</strong> Git/GitHub, Docker, AWS, Power BI, DAX</li>
+          <li><strong>Workflow:</strong> Agile/Scrum, JIRA, Linux/Bash, Figma</li>
         </ul>
       </div>
     </section>
@@ -1922,23 +2031,23 @@
         <div
           class="project-bubble"
           style="top: 20%; left: 35%"
-          onclick="openProject('tasknest')"
+          onclick="openProject('shastriji')"
         >
-          AI Tasknest
+          Shastri Ji
         </div>
         <div
           class="project-bubble"
           style="top: 25%; left: 60%"
-          onclick="openProject('linkvault')"
+          onclick="openProject('yojanaai')"
         >
-          LinkVault
+          YojanaAI
         </div>
         <div
           class="project-bubble"
           style="top: 65%; left: 25%"
-          onclick="openProject('presenceu')"
+          onclick="openProject('icd')"
         >
-          PresenceU
+          ICD Depot
         </div>
         <div
           class="project-bubble"
@@ -2001,67 +2110,50 @@
       </div>
 
       <!-- Project Modals -->
-      <div id="tasknest" class="project-modal">
+      <div id="shastriji" class="project-modal">
         <div class="project-content">
-          <h2>AI Tasknest – AI-Powered Task Organizer</h2>
-          <p><strong>Tech Used:</strong> Django | HTML | CSS | Gemini API</p>
+          <h2>Shastri Ji – Pandit Booking & Spiritual Services App</h2>
+          <p><strong>Tech Used:</strong> Flutter | Dart | Django | Frappe | REST API</p>
           <p>
-            Developed an AI-driven tool to streamline task management with smart
-            scheduling and automation features. Enabled users to generate
-            optimized daily routines and convert them into prioritized to-do
-            lists. Integrated robust authentication to ensure data privacy and
-            security.
+            Full-stack mobile app connecting users with Hindu priests for puja
+            bookings, supplies, and Panchang. Live on both Google Play Store and Apple App Store.
+            Built with Flutter frontend and Django/Frappe backend with real-time booking,
+            authentication, and push notifications.
           </p>
-          <a href="https://github.com/KDanish-21/Ai_Tasknet" target="_blank"
+          <a href="https://github.com/KDanish-21" target="_blank"
             >🔗 GitHub</a
           >
-          <a
-            href="https://www.linkedin.com/posts/danish-khan-507b0228a_day297-code365-aitasknest-activity-7274120941645824000-W586/?utm_source=share&utm_medium=member_desktop"
-            target="_blank"
-            >🔗 LinkedIn</a
-          >
-          <button onclick="closeProject('tasknest')">Close</button>
+          <button onclick="closeProject('shastriji')">Close</button>
         </div>
       </div>
 
-      <div id="linkvault" class="project-modal">
+      <div id="yojanaai" class="project-modal">
         <div class="project-content">
-          <h2>LinkVault – Web Application for Managing Important Links</h2>
-          <p><strong>Tech Used:</strong> Django | HTML | CSS</p>
+          <h2>YojanaAI – Government Scheme Discovery Platform</h2>
+          <p><strong>Tech Used:</strong> Django | Next.js | Flutter | REST API | AI</p>
           <p>
-            Designed and developed a scalable Django web application
-            implementing client-server architecture and optimized CRUD
-            operations. Enabled efficient management of user data with robust
-            authentication and encryption measures for enhanced security.
+            Voice-first, bilingual AI platform helping citizens discover Indian
+            government welfare schemes. Features AI-powered scheme matching, multilingual search,
+            and cross-platform interface (web + mobile).
           </p>
-          <a href="https://github.com/KDanish-21/LinkVault" target="_blank"
+          <a href="https://github.com/KDanish-21" target="_blank"
             >🔗 GitHub</a
           >
-          <a
-            href="https://www.linkedin.com/posts/danish-khan-507b0228a_day120-code365-project7-activity-7215915599577681920-U2Dw/?utm_source=share&utm_medium=member_desktop"
-            target="_blank"
-            >🔗 LinkedIn</a
-          >
-          <button onclick="closeProject('linkvault')">Close</button>
+          <button onclick="closeProject('yojanaai')">Close</button>
         </div>
       </div>
 
-      <div id="presenceu" class="project-modal">
+      <div id="icd" class="project-modal">
         <div class="project-content">
-          <h2>PresenceU – Smart & Secure Attendance Management</h2>
-          <p><strong>Tech Used:</strong> Django | HTML | CSS</p>
+          <h2>ICD Container Depot – Billing & Operations System</h2>
+          <p><strong>Tech Used:</strong> ERPNext | Frappe | Python | MariaDB</p>
           <p>
-            Robust attendance management platform for educational institutions
-            and tutors. Users can record, search, and filter attendance
-            seamlessly. Secure multi-format data export (Excel) with integrated
-            authentication and encryption for privacy.
+            Custom ERPNext app for an ICD (Inland Container Depot) automating
+            container billing, gate pass generation, and detention charge calculations.
+            Delivered 95% improvement in billing processing time by replacing manual workflows
+            with automated Frappe doctypes, print formats, and custom reports.
           </p>
-          <a
-            href="https://www.linkedin.com/posts/danish-khan-507b0228a_day230-code365-project-activity-7252764692056576000-HsOx/?utm_source=share&utm_medium=member_desktop"
-            target="_blank"
-            >🔗 LinkedIn</a
-          >
-          <button onclick="closeProject('presenceu')">Close</button>
+          <button onclick="closeProject('icd')">Close</button>
         </div>
       </div>
 
@@ -2157,6 +2249,37 @@
             >🔗 LinkedIn
           </a>
           <button onclick="closeProject('more')">Close</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="experience">
+      <h1>Work <span style="color:#00bcd4">Experience</span></h1>
+      <div class="exp-timeline">
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <h2>ERPNext / Frappe Developer</h2>
+              <h3>ADRS Techno Pvt. Ltd. · Full-time</h3>
+            </div>
+            <span class="exp-date">Sep 2025 – Present</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Develop and customise ERPNext/Frappe modules — doctypes, server scripts,
+                print formats, and REST APIs — for enterprise clients across logistics,
+                healthcare, and manufacturing.</li>
+            <li>Built a custom ICD Container Depot billing system, cutting processing
+                time by 95% through automated workflows and real-time reporting.</li>
+            <li>Deliver full-stack features using Django, FastAPI, React, Next.js, and
+                Flutter; integrate Power BI dashboards for client analytics.</li>
+            <li>Collaborate in Agile/Scrum environment using JIRA and Confluence.</li>
+          </ul>
+          <div class="exp-tags">
+            <span>ERPNext</span><span>Frappe</span><span>Python</span>
+            <span>Django</span><span>FastAPI</span><span>React</span>
+            <span>Next.js</span><span>Flutter</span><span>Power BI</span>
+            <span>MySQL</span><span>MariaDB</span><span>Docker</span>
+          </div>
         </div>
       </div>
     </section>
@@ -2302,7 +2425,7 @@
       </div>
 
       <footer>
-        <p>© 2025 Danish Khan</p>
+        <p>© 2026 Danish Khan</p>
       </footer>
     </section>
 
