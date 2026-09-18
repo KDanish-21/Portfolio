@@ -8,6 +8,8 @@ export default function FeaturedWork() {
     <section id="work" className="scroll-mt-16 border-b border-hair">
       <div className="px-5 pt-8 md:px-gutter">
         <SectionHeader
+          index="Section / 02 — Selected Work"
+          status="Status / Shipped"
           title="Featured Work"
           subtitle="Real projects. Real impact."
           note={[

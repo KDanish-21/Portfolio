@@ -55,6 +55,8 @@ export default function Systems() {
     <section id="systems" className="scroll-mt-16 border-b border-hair">
       <div className="px-5 pt-8 md:px-gutter">
         <SectionHeader
+          index="Section / 03 — System Inventory"
+          status="Stack / 06 Modules"
           title="Systems & Skills"
           subtitle="The tools behind the solutions."
           note={["A modern tech stack for modern problems."]}
@@ -77,9 +79,23 @@ export default function Systems() {
                 · {group.label} ·
               </span>
 
+              <p className="mb-3.5 font-mono text-[8px] uppercase tracking-[0.22em] text-olive">
+                Stack / {String(i + 1).padStart(2, "0")}
+              </p>
+
               <ul className="space-y-2.5">
-                {group.items.map((item) => (
-                  <li key={item.name} className="flex items-center gap-2">
+                {group.items.map((item, j) => (
+                  <li
+                    key={item.name}
+                    data-reveal
+                    style={
+                      {
+                        "--reveal-delay": `${i * 70 + 120 + j * 55}ms`,
+                        "--reveal-shift": "12px",
+                      } as React.CSSProperties
+                    }
+                    className="flex items-center gap-2"
+                  >
                     <SkillGlyph icon={item.icon} />
                     <span className="text-[12px] leading-tight text-ink-2">{item.name}</span>
                   </li>

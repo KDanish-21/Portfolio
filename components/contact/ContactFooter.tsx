@@ -25,11 +25,18 @@ export default function ContactFooter() {
 
         {/* statement */}
         <div data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
-          <h2 className="font-display text-display font-extrabold uppercase leading-[1.02] tracking-display">
-            {contact.headline[0]}
-            <br />
-            <span className="font-normal italic">
-              That <span className="text-copper">Works.</span>
+          <h2 className="font-display text-footer font-extrabold uppercase leading-[0.94] tracking-display">
+            <span data-reveal-line className="block overflow-hidden">
+              <span>{contact.headline[0]}</span>
+            </span>
+            <span
+              data-reveal-line
+              style={{ "--reveal-delay": "140ms" } as React.CSSProperties}
+              className="block overflow-hidden"
+            >
+              <span className="font-normal italic">
+                That <span className="text-copper">Works.</span>
+              </span>
             </span>
           </h2>
 
@@ -51,7 +58,7 @@ export default function ContactFooter() {
         <ul
           data-reveal
           style={{ "--reveal-delay": "180ms" } as React.CSSProperties}
-          className="space-y-3 lg:text-right"
+          className="space-y-3 lg:ml-auto lg:w-fit"
         >
           {links.map((link) => (
             <li key={link.key}>

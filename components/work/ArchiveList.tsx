@@ -12,16 +12,18 @@ export default function ArchiveList() {
             data-reveal
             style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
           >
-            <div className="group relative flex flex-wrap items-baseline gap-x-5 gap-y-1 border-b border-hair py-3.5">
+            <div className="group relative flex flex-wrap items-baseline gap-x-6 gap-y-1 border-b border-hair py-5">
               <span
                 aria-hidden="true"
                 className="absolute bottom-[-1px] left-0 h-px w-0 bg-copper transition-[width] duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:w-full"
               />
-              <span className="font-mono text-[10px] text-olive">{project.index}</span>
-              <span className="font-display text-base font-bold uppercase tracking-display">
+              <span className="display-condensed w-[4.5rem] shrink-0 text-index font-extrabold leading-none tracking-mega text-copper-ink">
+                {project.index}
+              </span>
+              <span className="display-condensed text-lg font-extrabold uppercase leading-none tracking-display">
                 {project.title}
               </span>
-              <span className="text-[12px] text-ink-2">{project.descriptor}</span>
+              <span className="text-[12.5px] text-ink-2">{project.descriptor}</span>
               <span className="mono-micro ml-auto">{project.stack}</span>
             </div>
           </li>

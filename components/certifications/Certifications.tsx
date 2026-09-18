@@ -12,6 +12,8 @@ export default function Certifications() {
     <section id="certifications" className="scroll-mt-16 border-b border-hair">
       <div className="px-5 pt-8 md:px-gutter">
         <SectionHeader
+          index="Section / 05 — Credentials"
+          status="Location / India"
           title="Certifications"
           subtitle="Learning never stops."
           actionLabel="View all certifications"
@@ -28,11 +30,19 @@ export default function Certifications() {
               key={cert.title}
               data-reveal
               style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
-              className="relative w-[228px] shrink-0 snap-start border border-hair p-4 transition-colors duration-500 hover:border-ink/40 xl:w-auto"
+              className="group relative w-[228px] shrink-0 snap-start border-l border-t border-hair p-4 xl:w-auto"
             >
-              <span aria-hidden="true" className="absolute left-3 top-3 h-1 w-1 bg-copper" />
+              {/* rule expansion instead of a card hover — matches the archive list */}
+              <span
+                aria-hidden="true"
+                className="absolute left-0 top-[-1px] h-px w-0 bg-copper transition-[width] duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:w-full"
+              />
 
-              <h3 className="mt-3 font-display text-[13px] font-bold leading-tight tracking-[-0.01em]">
+              <p className="font-mono text-[8px] uppercase tracking-[0.22em] text-olive">
+                Cert / {String(i + 1).padStart(2, "0")}
+              </p>
+
+              <h3 className="display-condensed mt-2.5 text-[14px] font-extrabold uppercase leading-tight tracking-[-0.01em]">
                 {cert.title}
               </h3>
               <p className="mono-micro mt-1.5">{cert.issuer}</p>
@@ -59,7 +69,7 @@ export default function Certifications() {
           <li
             data-reveal
             style={{ "--reveal-delay": "380ms" } as React.CSSProperties}
-            className="flex w-[200px] shrink-0 snap-start flex-col justify-center border-l border-hair pl-5 xl:w-auto"
+            className="flex w-[200px] shrink-0 snap-start flex-col justify-center border-l border-t border-hair p-4 xl:w-auto"
           >
             {certificationsQuote.map((line) => (
               <span

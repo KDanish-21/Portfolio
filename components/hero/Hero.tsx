@@ -16,8 +16,8 @@ export default function Hero() {
             <span className="mono-label">Hello, I&rsquo;m</span>
           </div>
 
-          <div className="mt-4 flex items-end gap-5">
-            <h1 className="font-display text-mega font-extrabold uppercase leading-[0.84] tracking-mega">
+          <div className="mt-4 flex items-end gap-4">
+            <h1 className="font-display text-mega font-extrabold uppercase leading-[0.8] tracking-mega">
               <span data-reveal-line className="block overflow-hidden">
                 <span>Danish</span>
               </span>

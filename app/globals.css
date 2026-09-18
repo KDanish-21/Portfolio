@@ -13,24 +13,27 @@
   --color-rule: #a6a39b;
   --color-grid: #d5d1c8;
   --color-copper: #b77c5f;
+  /* Copper at 2.99:1 on paper fails AA, so small text that carries meaning
+     (index numerals) uses this darker cut; decorative marks keep --copper. */
+  --color-copper-ink: #8e5a40;
   --color-dark: #202423;
-  --color-olive: #767a69;
+  --color-olive: #5f6357;
 
   /* Hairlines — the dominant structural element of the design */
   --color-hair: rgba(23, 26, 26, 0.2);
-  --color-hair-soft: rgba(23, 26, 26, 0.1);
   --color-hair-dark: rgba(240, 238, 232, 0.16);
 
   /* ---- Type scale ---------------------------------------------------- */
-  --text-mega: clamp(3.25rem, 8.4vw, 8.25rem);
-  --text-display: clamp(1.75rem, 2.55vw, 2.5rem);
-  --text-section: clamp(1.35rem, 1.9vw, 1.85rem);
+  --text-mega: clamp(3.5rem, 10.6vw, 10.5rem);
+  --text-footer: clamp(2.25rem, 5.2vw, 4.75rem);
+  --text-display: clamp(1.75rem, 2.75vw, 2.75rem);
+  --text-section: clamp(1.35rem, 2vw, 2rem);
   --text-stat: clamp(1.4rem, 2vw, 1.95rem);
+  --text-index: clamp(1.6rem, 2.4vw, 2.4rem);
   --text-micro: 0.625rem;
   --text-mono-sm: 0.6875rem;
-  --text-mono: 0.75rem;
 
-  --tracking-mega: -0.045em;
+  --tracking-mega: -0.05em;
   --tracking-display: -0.03em;
   --tracking-label: 0.18em;
   --tracking-wide-label: 0.26em;
@@ -73,13 +76,22 @@
     outline-offset: 3px;
   }
 
+  /* Archivo's wdth axis is what makes the display type read as editorial
+     rather than as a large UI heading. 62–125 is the available range. */
   h1,
   h2,
   h3 {
     font-family: var(--font-display);
     font-weight: 800;
+    font-stretch: 87%;
   }
 }
+
+@utility display-condensed {
+  font-family: var(--font-display);
+  font-stretch: 87%;
+}
+
 
 /* ---------------------------------------------------------------------- */
 /* Paper: a blueprint grid plus a faint tooth. Never flat.                 */
@@ -90,6 +102,8 @@
     isolation: isolate;
   }
 
+  /* Two-tier grid: a fine minor rule under a stronger major one, the way a
+     drawing sheet is printed. Plus a faint vignette so the paper has an edge. */
   .paper-surface::before {
     content: "";
     position: fixed;
@@ -97,9 +111,17 @@
     z-index: -2;
     background-image:
       repeating-linear-gradient(to right, var(--color-grid) 0 1px, transparent 1px 100%),
-      repeating-linear-gradient(to bottom, var(--color-grid) 0 1px, transparent 1px 100%);
-    background-size: 56px 56px;
-    opacity: 0.22;
+      repeating-linear-gradient(to bottom, var(--color-grid) 0 1px, transparent 1px 100%),
+      repeating-linear-gradient(to right, rgba(166, 163, 155, 0.34) 0 1px, transparent 1px 100%),
+      repeating-linear-gradient(to bottom, rgba(166, 163, 155, 0.34) 0 1px, transparent 1px 100%),
+      radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(23, 26, 26, 0.05) 100%);
+    background-size:
+      56px 56px,
+      56px 56px,
+      14px 14px,
+      14px 14px,
+      100% 100%;
+    opacity: 0.4;
     pointer-events: none;
   }
 
@@ -189,7 +211,7 @@
 @layer utilities {
   html[data-js] [data-reveal] {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(var(--reveal-shift, 22px));
   }
 
   html[data-js] [data-reveal].is-visible {
@@ -209,6 +231,43 @@
   html[data-js] [data-reveal-line].is-visible > span {
     transform: none;
     transition: transform 0.95s var(--ease-editorial) var(--reveal-delay, 0ms);
+  }
+
+  /* Section rules expand from the left rather than fading in */
+  html[data-js] [data-reveal-rule] {
+    transform: scaleX(0);
+  }
+
+  html[data-js] [data-reveal-rule].is-visible {
+    transform: scaleX(1);
+    transition: transform 1.1s var(--ease-editorial) var(--reveal-delay, 0ms);
+  }
+
+  /* Images uncover from behind a clipping edge and settle out of a slight
+     overscale, rather than simply fading in. */
+  html[data-js] [data-reveal-image] {
+    clip-path: inset(0 0 100% 0);
+    transform: scale(1.04);
+  }
+
+  html[data-js] [data-reveal-image].is-visible {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+    transition:
+      clip-path 1.1s var(--ease-editorial) var(--reveal-delay, 0ms),
+      transform 1.4s var(--ease-editorial) var(--reveal-delay, 0ms);
+  }
+
+  /* Hover response for the project devices — pointer devices only. */
+  @media (hover: hover) {
+    [data-hover-lift] {
+      transition: transform 0.55s var(--ease-editorial);
+      will-change: transform;
+    }
+
+    [data-hover-lift]:hover {
+      transform: translateY(-6px) scale(1.02);
+    }
   }
 
   /* SVG connector line-draw */
@@ -236,10 +295,21 @@
   html[data-js] [data-reveal],
   html[data-js] [data-reveal].is-visible,
   html[data-js] [data-reveal-line] > span,
-  html[data-js] [data-reveal-line].is-visible > span {
+  html[data-js] [data-reveal-line].is-visible > span,
+  html[data-js] [data-reveal-rule],
+  html[data-js] [data-reveal-rule].is-visible,
+  html[data-js] [data-reveal-image],
+  html[data-js] [data-reveal-image].is-visible,
+  [data-hover-lift],
+  [data-hover-lift]:hover {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  html[data-js] [data-reveal-image],
+  html[data-js] [data-reveal-image].is-visible {
+    clip-path: none;
   }
 
   html[data-js] [data-draw],

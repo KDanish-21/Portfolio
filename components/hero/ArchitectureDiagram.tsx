@@ -233,6 +233,45 @@ export default function ArchitectureDiagram() {
           opacity="0.45"
         />
 
+        {/* Corner crosshairs and edge coordinate ticks */}
+        <g stroke="currentColor" strokeWidth="0.6" opacity="0.5">
+          {[
+            [14, 14],
+            [626, 14],
+            [14, 466],
+            [626, 466],
+          ].map(([cx, cy]) => (
+            <g key={`${cx}-${cy}`}>
+              <path d={`M${cx - 5} ${cy}h10M${cx} ${cy - 5}v10`} />
+            </g>
+          ))}
+          {Array.from({ length: 13 }).map((_, i) => {
+            const x = 14 + i * 51;
+            return <path key={`t${i}`} d={`M${x} 14v${i % 4 === 0 ? 5 : 3}`} />;
+          })}
+          {Array.from({ length: 10 }).map((_, i) => {
+            const y = 14 + i * 50;
+            return <path key={`l${i}`} d={`M14 ${y}h${i % 4 === 0 ? 5 : 3}`} />;
+          })}
+        </g>
+
+        {/* Overall dimension line */}
+        <g stroke="currentColor" strokeWidth="0.6" opacity="0.55">
+          <path d="M44 32h236M360 32h236" />
+          <path d="M44 28v8M596 28v8" />
+          <path d="M48 32l5-2.5v5zM592 32l-5-2.5v5z" fill="currentColor" stroke="none" />
+        </g>
+        <text
+          x="320"
+          y="35"
+          textAnchor="middle"
+          className="fill-olive font-mono"
+          fontSize="7"
+          letterSpacing="0.18em"
+        >
+          SYSTEM BOUNDARY
+        </text>
+
         {/* Connectors */}
         <g opacity="0.75">
           {nodes.map((node, i) => (
@@ -293,6 +332,17 @@ export default function ArchitectureDiagram() {
               data-reveal
               style={{ "--reveal-delay": `${420 + i * 70}ms` } as React.CSSProperties}
             >
+              <text
+                x={node.x}
+                y={node.y - 21}
+                textAnchor="middle"
+                className="fill-olive font-mono"
+                fontSize="7"
+                letterSpacing="0.12em"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </text>
+
               <g
                 transform={`translate(${node.x} ${node.y})`}
                 fill="none"
@@ -349,12 +399,35 @@ export default function ArchitectureDiagram() {
         </span>
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 border-t border-hair pt-3">
-        {diagramFooter.map((item) => (
-          <span key={item} className="mono-micro">
-            {item}
-          </span>
-        ))}
+      {/* Drawing title block — the strongest signal that this is a document */}
+      <div className="mt-3 border border-hair text-ink-2 md:grid md:grid-cols-[auto_1fr_auto] md:items-stretch">
+        <div className="border-b border-hair px-3 py-2 md:border-b-0 md:border-r">
+          <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-olive">Fig. 01</p>
+          <p className="mt-0.5 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.14em] text-ink">
+            System Architecture
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-0.5 border-b border-hair px-3 py-2 md:justify-center md:border-b-0">
+          {diagramFooter.map((item) => (
+            <span key={item} className="mono-micro">
+              {item}
+            </span>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-2 md:border-l md:border-hair">
+          <div className="border-r border-hair px-3 py-2">
+            <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-olive">Scale</p>
+            <p className="mt-0.5 whitespace-nowrap font-mono text-[9px] tracking-[0.14em] text-ink">
+              1 : 1
+            </p>
+          </div>
+          <div className="px-3 py-2">
+            <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-olive">Rev</p>
+            <p className="mt-0.5 font-mono text-[9px] tracking-[0.14em] text-ink">2026</p>
+          </div>
+        </div>
       </div>
     </div>
   );

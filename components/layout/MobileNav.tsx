@@ -62,7 +62,7 @@ export default function MobileNav() {
                   onClick={() => setOpen(false)}
                   className="flex items-baseline gap-4 py-4"
                 >
-                  <span className="font-mono text-[10px] tracking-[0.1em] text-copper">
+                  <span className="font-mono text-[10px] tracking-[0.1em] text-copper-ink">
                     {item.index}
                   </span>
                   <span className="font-display text-xl font-extrabold uppercase tracking-display">

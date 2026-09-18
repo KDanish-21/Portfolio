@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { meta, nav } from "@/lib/content";
 
 export default function SideRail() {
   const [active, setActive] = useState(nav[0].href.slice(1));
+  const [markerTop, setMarkerTop] = useState<number | null>(null);
+  const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     const sections = nav
@@ -27,6 +29,13 @@ export default function SideRail() {
     return () => observer.disconnect();
   }, []);
 
+  // The marker travels the rail rather than each dot toggling colour.
+  useEffect(() => {
+    const index = nav.findIndex((item) => item.href.slice(1) === active);
+    const entry = listRef.current?.children[index] as HTMLElement | undefined;
+    if (entry) setMarkerTop(entry.offsetTop + 15);
+  }, [active]);
+
   return (
     <aside className="fixed left-0 top-0 z-50 hidden h-screen w-rail flex-col border-r border-hair bg-paper lg:flex">
       <a
@@ -40,9 +49,18 @@ export default function SideRail() {
       <nav aria-label="Section index" className="relative flex-1 pt-9">
         <span
           aria-hidden="true"
-          className="absolute bottom-6 left-[21px] top-12 w-px bg-hair"
+          className="absolute bottom-6 left-[17px] top-12 w-px bg-hair"
         />
-        <ul>
+
+        {markerTop !== null && (
+          <span
+            aria-hidden="true"
+            style={{ top: `${markerTop}px` }}
+            className="absolute left-[14px] z-10 h-[7px] w-[7px] rounded-full bg-copper transition-[top] duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)]"
+          />
+        )}
+
+        <ul ref={listRef}>
           {nav.map((item) => {
             const id = item.href.slice(1);
             const isActive = active === id;
@@ -55,16 +73,12 @@ export default function SideRail() {
                 >
                   <span
                     aria-hidden="true"
-                    className={`mt-[5px] h-[7px] w-[7px] shrink-0 rounded-full border transition-colors duration-500 ${
-                      isActive
-                        ? "border-copper bg-copper"
-                        : "border-rule bg-paper group-hover:border-ink"
-                    }`}
+                    className="mt-[5px] h-[7px] w-[7px] shrink-0 rounded-full border border-rule bg-paper transition-colors duration-500 group-hover:border-ink"
                   />
                   <span className="min-w-0">
                     <span
                       className={`block font-mono text-[9px] leading-none tracking-[0.1em] transition-colors duration-300 ${
-                        isActive ? "text-copper" : "text-olive"
+                        isActive ? "text-copper-ink" : "text-olive"
                       }`}
                     >
                       {item.index}

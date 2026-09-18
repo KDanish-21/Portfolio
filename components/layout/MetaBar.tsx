@@ -8,6 +8,8 @@ export default function MetaBar() {
       <span className="mono-micro hidden truncate text-center md:block">{meta.tagline}</span>
 
       <div className="flex shrink-0 items-center gap-4">
+        {/* only shown where it fits without squeezing the tagline */}
+        <span className="mono-micro hidden 2xl:block">{meta.document}</span>
         <span className="mono-micro hidden lg:block">{meta.coordinates}</span>
         <span
           aria-hidden="true"

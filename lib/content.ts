@@ -1,3 +1,8 @@
+import type { StaticImageData } from "next/image";
+import icdImage from "@/app/asset/cutout/icd.png";
+import shastrijiImage from "@/app/asset/cutout/ShastriJI.png";
+import yojanaaiImage from "@/app/asset/cutout/Yojnaai.png";
+
 export type NavItem = {
   index: string;
   label: string;
@@ -17,7 +22,8 @@ export type FeaturedProject = {
   description: string;
   highlight?: string;
   annotation: string[];
-  image?: string;
+  image?: StaticImageData;
+  plate?: { index: string; label: string };
   href?: string;
 };
 
@@ -50,6 +56,7 @@ export const meta = {
   tagline: "ENGINEERING SOLUTIONS FOR A BETTER TOMORROW",
   edition: "PORTFOLIO / 2026",
   coordinates: "INDIA / 2026 / ERP / API / WEB / DATA",
+  document: "DOC / DK-2026-001 · REV / A · STATUS / ACTIVE",
   mantra: ["BUILD", "LEARN", "SOLVE", "REPEAT"],
 } as const;
 
@@ -92,6 +99,8 @@ export const featuredProjects: FeaturedProject[] = [
     description:
       "Live on Play Store & App Store. Pandit booking, puja supplies, Panchang, real-time booking management and push notifications.",
     annotation: ["TRADITION", "MEETS", "TECHNOLOGY"],
+    image: shastrijiImage,
+    plate: { index: "Plate 01", label: "Store Home" },
   },
   {
     slug: "yojanaai",
@@ -103,6 +112,8 @@ export const featuredProjects: FeaturedProject[] = [
     description:
       "Voice-first, bilingual AI platform for discovering Indian government welfare schemes. Multilingual search, AI scheme matching, web + mobile.",
     annotation: ["SCHEMES", "FOR EVERY", "CITIZEN"],
+    image: yojanaaiImage,
+    plate: { index: "Plate 02", label: "Assistant" },
   },
   {
     slug: "icd-container",
@@ -115,6 +126,8 @@ export const featuredProjects: FeaturedProject[] = [
       "Custom ERPNext app for a container depot — automated billing, gate pass generation, detention charges.",
     highlight: "95% improvement in processing time.",
     annotation: ["95%", "FASTER", "PROCESSING"],
+    image: icdImage,
+    plate: { index: "Plate 03", label: "Operations Dashboard" },
   },
 ];
 
